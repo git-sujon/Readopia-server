@@ -1,10 +1,11 @@
 import express from 'express'
+import { BooksRoute } from '../modules/book/book.route'
 
 const router = express.Router()
 
 const moduleRoutes = [
   {
-    path: '/auth/',
+    path: '/books/',
     route: BooksRoute,
   },
   

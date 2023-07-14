@@ -17,8 +17,22 @@ const createBookController =catchAsync(async (req: Request, res: Response) => {
       })
 
 })
+const getAllBooksController =catchAsync(async (req: Request, res: Response) => {
+    const  {...bookData} = req.body
+
+    const result = await BookService.getAllBooks()
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: 'Books retrieved successfully',
+        data: result,
+      })
+
+})
 
 
 export const BookController = {
-    createBookController
+    createBookController,
+    getAllBooksController
 }

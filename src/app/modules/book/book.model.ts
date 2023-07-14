@@ -6,6 +6,7 @@ const bookSchema = new Schema(
     title: {
       type: String,
       required: true,
+      unique:true
     },
     author: {
       type: String,
@@ -33,4 +34,4 @@ const bookSchema = new Schema(
   },
 );
 
-export const book = model<IBook, BookModel>('Book', bookSchema);
+export const Book = model<IBook, BookModel>('Book', bookSchema);

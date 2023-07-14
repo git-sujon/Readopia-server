@@ -1,11 +1,18 @@
 import { IBook } from "./book.interface"
-import { book } from "./book.model"
+import { Book } from "./book.model"
+
 
 const createBook = async(payload:IBook) => {
-    const result = await book.create(payload)
+    const result = await Book.create(payload)
+    return result
+}
+
+const getAllBooks = async() => {
+    const result = await Book.find({})
     return result
 }
 
 export const BookService = {
-    createBook
+    createBook,
+    getAllBooks
 }

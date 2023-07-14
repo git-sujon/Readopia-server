@@ -6,6 +6,8 @@ const router = express.Router()
 router.post('/create-book', BookController.createBookController)
 router.get('/:id', BookController.getSingleBooksController)
 router.get('/', BookController.getAllBooksController)
+router.patch('/:id', BookController.updateBooksController)
+router.delete('/:id', BookController.deleteBooksController)
 
 
 export const BooksRoute= router

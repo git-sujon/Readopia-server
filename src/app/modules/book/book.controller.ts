@@ -38,7 +38,34 @@ const getSingleBooksController =catchAsync(async (req: Request, res: Response) =
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: 'Books retrieved successfully',
+        message: 'Book retrieved successfully',
+        data: result,
+      })
+
+})
+const updateBooksController =catchAsync(async (req: Request, res: Response) => {
+    const  {id} = req.params
+    const {...payload} = req.body
+
+    const result = await BookService.updateBook(id, payload)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: 'Book update successfully',
+        data: result,
+      })
+
+})
+const deleteBooksController =catchAsync(async (req: Request, res: Response) => {
+    const  {id} = req.params
+
+    const result = await BookService.deleteBook(id)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: 'Book update successfully',
         data: result,
       })
 
@@ -48,5 +75,7 @@ const getSingleBooksController =catchAsync(async (req: Request, res: Response) =
 export const BookController = {
     createBookController,
     getAllBooksController,
-    getSingleBooksController
+    getSingleBooksController,
+    updateBooksController,
+    deleteBooksController
 }

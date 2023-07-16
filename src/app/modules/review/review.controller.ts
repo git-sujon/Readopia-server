@@ -7,9 +7,9 @@ import httpStatus from "http-status";
 
 const addReviewController = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { ...payload } = req.body;
+  const { review } = req.body;
 
-  const result = await ReviewService.addReview(id, payload);
+  const result = await ReviewService.addReview(id, review);
 
   sendResponse(res, {
     success: true,
@@ -26,7 +26,7 @@ const getReviewController = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Add a review successfully',
+    message: 'Get reviews successfully',
     data: result,
   });
 });

@@ -13,8 +13,8 @@ const addReview = async (id: String, payload: string) => {
 };
 
 const getReview = async (id: string) => {
-  const result = await Book.findById(id).projection({ _id: 0, comment: 1 });
-  return result;
+  const result = await Book.findById(id).select({  reviews: 1 });
+  return result?.reviews;
 };
 
 export const ReviewService = {

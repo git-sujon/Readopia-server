@@ -10,7 +10,12 @@ import { bookSearchableFields } from "./book.contents";
 const createBookController =catchAsync(async (req: Request, res: Response) => {
     const  {...bookData} = req.body
 
+    console.log("bookData:", bookData)
+
+
     const result = await BookService.createBook(bookData)
+
+
 
     sendResponse(res, {
         success: true,
@@ -67,6 +72,7 @@ const deleteBooksController =catchAsync(async (req: Request, res: Response) => {
     const  {id} = req.params
 
     const result = await BookService.deleteBook(id)
+
 
     sendResponse(res, {
         success: true,

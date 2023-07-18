@@ -1,7 +1,7 @@
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { ISortCondition } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { bookFilterableFields } from './book.contents';
+import { bookSearchableFields } from './book.contents';
 import { IBook, IBookFilter } from './book.interface';
 import { Book } from './book.model';
 
@@ -18,11 +18,14 @@ const getAllBooks = async (
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
 
+
+
+    
   const andConditions = [];
 
   if (searchTerm) {
     andConditions.push({
-      $or: bookFilterableFields.map(field => ({
+      $or: bookSearchableFields.map(field => ({
         [field]: {
           $regex: searchTerm,
           $options: 'i',
@@ -47,9 +50,12 @@ const getAllBooks = async (
   const whereConditions =
     andConditions.length > 0 ? { $and: andConditions } : {};
 
-  const result = await Book.find(whereConditions);
+  const result = await Book.find(whereConditions)
+    .sort(sortConditions)
+    .skip(skip)
+    .limit(limit);
 
-  const total = await Book.countDocuments(whereConditions)
+  const total = await Book.countDocuments(whereConditions);
 
   return {
     meta: {
@@ -65,7 +71,8 @@ const getSingleBooks = async (id: string) => {
   return result;
 };
 const updateBook = async (id: string, payload: Partial<IBook>) => {
-  const result = await Book.findByIdAndUpdate(id, payload, { new: true });
+  const result = await Book.findByIdAndUpdate(id, payload);
+
   return result;
 };
 const deleteBook = async (id: string) => {

@@ -5,12 +5,12 @@ import sendResponse from "../../../shared/sendResponse";
 import httpStatus from "http-status";
 import pick from "../../../shared/pick";
 import { paginationFieldsConstant } from "../../../constant.ts/paginationFieldsConstant";
-import { bookSearchableFields } from "./book.contents";
+import { bookFilterableFields } from "./book.contents";
 
 const createBookController =catchAsync(async (req: Request, res: Response) => {
     const  {...bookData} = req.body
 
-    console.log("bookData:", bookData)
+
 
 
     const result = await BookService.createBook(bookData)
@@ -26,7 +26,7 @@ const createBookController =catchAsync(async (req: Request, res: Response) => {
 
 })
 const getAllBooksController =catchAsync(async (req: Request, res: Response) => {
-    const filters = pick(req.query, bookSearchableFields)
+    const filters = pick(req.query, bookFilterableFields)
 
     const paginationOptions = pick(req.query, paginationFieldsConstant)
 
@@ -66,14 +66,14 @@ const updateBooksController =catchAsync(async (req: Request, res: Response) => {
         message: 'Book update successfully',
         data: result,
       })
-
+ 
 })
 const deleteBooksController =catchAsync(async (req: Request, res: Response) => {
     const  {id} = req.params
 
     const result = await BookService.deleteBook(id)
 
-
+  
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,

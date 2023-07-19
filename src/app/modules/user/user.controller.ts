@@ -34,7 +34,77 @@ const getSingleUserController =catchAsync(async (req: Request, res: Response) =>
 
 })
 
+
+const addToUserWishlistController =catchAsync(async (req: Request, res: Response) => {
+    const { email } = req.params;
+    const { wishlist } = req.body;
+
+    const result = await UserService.addToUserWishlist(email, wishlist)
+
+
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: 'Book successfully added to wishlist successfully',
+        data: result,
+      })
+
+})
+const delateFromUserWishlistController =catchAsync(async (req: Request, res: Response) => {
+    const { email } = req.params;
+    const { wishlist } = req.body;
+
+    const result = await UserService.delateFromUserWishlist(email, wishlist)
+
+
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: 'Book successfully added to wishlist successfully',
+        data: result,
+      })
+
+})
+const addToUserFinishedListController =catchAsync(async (req: Request, res: Response) => {
+    const { email } = req.params;
+    const { wishlist } = req.body;
+
+    const result = await UserService.addToUserFinishedList(email, wishlist)
+
+
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: 'Book successfully added to wishlist successfully',
+        data: result,
+      })
+
+})
+const delateFromUserFinishedListController =catchAsync(async (req: Request, res: Response) => {
+    const { email } = req.params;
+    const { wishlist } = req.body;
+
+    const result = await UserService.delateFromUserFinishedList(email, wishlist)
+
+
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: 'Book successfully added to wishlist successfully',
+        data: result,
+      })
+
+})
+
 export const userController = {
     createUserController,
-    getSingleUserController
+    getSingleUserController,
+    addToUserWishlistController,
+    delateFromUserWishlistController,
+    addToUserFinishedListController,
+    delateFromUserFinishedListController
 }

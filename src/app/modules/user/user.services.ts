@@ -2,6 +2,7 @@ import { IUser } from './user.interface';
 import { User } from './user.model';
 
 const createUser = async (payload: IUser) => {
+
   const result = await User.create(payload);
   return result;
 };
@@ -25,11 +26,12 @@ const addToUserWishlist = async (email: string, bookId: string) => {
 
 const delateFromUserWishlist = async (email: string, bookId: string) => {
 
-  console.log("bookId:", bookId)
+  // console.log("bookId:", bookId)
+  // console.log("email:", email)
 
   const result = await User.updateOne(
     { email },
-    {
+    {  
       $pull:{
         wishlist:bookId
       }
@@ -53,7 +55,7 @@ const addToUserFinishedList = async (email: string, bookId: string) => {
 const delateFromUserFinishedList = async (email: string, bookId: string) => {
 
   console.log("bookId:", bookId)
-
+  console.log("email:", email)
   const result = await User.updateOne(
     { email },
     {

@@ -22,8 +22,7 @@ const moduleRoutes:IModuleRoutes[] = [
   {
     path:'/users',
     route:UserRoute
-  }
-  
+  },
 ]
 
 moduleRoutes.forEach(route => router.use(route.path, route.route))

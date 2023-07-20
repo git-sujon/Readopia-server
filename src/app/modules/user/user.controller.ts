@@ -6,7 +6,7 @@ import { UserService } from "./user.services";
 const createUserController =catchAsync(async (req: Request, res: Response) => {
     const  {...userData} = req.body
 
-    const result = await UserService.createUser(userData)
+    const result = await UserService.createUser(userData) 
 
 
 
@@ -46,7 +46,7 @@ const addToUserWishlistController =catchAsync(async (req: Request, res: Response
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: 'Book successfully added to wishlist successfully',
+        message: 'Book successfully added to wishlist',
         data: result,
       })
 
@@ -62,39 +62,39 @@ const delateFromUserWishlistController =catchAsync(async (req: Request, res: Res
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: 'Book successfully added to wishlist successfully',
+        message: 'Book delte from wishlist successfully',
         data: result,
       })
 
 })
 const addToUserFinishedListController =catchAsync(async (req: Request, res: Response) => {
     const { email } = req.params;
-    const { wishlist } = req.body;
+    const { finishedBook } = req.body;
 
-    const result = await UserService.addToUserFinishedList(email, wishlist)
+    const result = await UserService.addToUserFinishedList(email, finishedBook)
 
 
 
-    sendResponse(res, {
+    sendResponse(res, { 
         success: true,
         statusCode: httpStatus.OK,
-        message: 'Book successfully added to wishlist successfully',
+        message: 'Book added to Finished list successfully',
         data: result,
       })
 
 })
 const delateFromUserFinishedListController =catchAsync(async (req: Request, res: Response) => {
     const { email } = req.params;
-    const { wishlist } = req.body;
+    const { finishedBook } = req.body;
 
-    const result = await UserService.delateFromUserFinishedList(email, wishlist)
+    const result = await UserService.delateFromUserFinishedList(email, finishedBook)
 
 
 
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: 'Book successfully added to wishlist successfully',
+        message: 'Book delete from finished list successfully',
         data: result,
       })
 

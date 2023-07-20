@@ -5,15 +5,15 @@ export type IUser =  {
     name: string;
     email: string;
     phoneNumber: string;
-    wishlist?: Types.ObjectId[] | IBook[];
-    finishedBook?: Types.ObjectId[] | IBook[];
-    addedBook?: Types.ObjectId[] | IBook[];
+    wishlist?: Types.ObjectId[] 
+    finishedBook?: Types.ObjectId[] 
+    addedBook?: Types.ObjectId[] 
     givenReviews?: {
-      bookId: Types.ObjectId | IBook;
+      bookId: Types.ObjectId 
       reviews: string[];
     }[];
     givenRating?: {
-      bookId: Types.ObjectId | IBook;
+      bookId: Types.ObjectId 
       rating: number;
     }[];
   }
